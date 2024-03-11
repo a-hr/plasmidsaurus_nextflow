@@ -1,0 +1,16 @@
+# nextflow cache and work directories
+.nextflow/
+work/
+.nextflow.log*
+*.out
+*.txt
+
+# pipeline inputs and outputs
+inputs/fastqs*/
+output*/
+
+# pipeline intermediate files
+containers/*
+
+# macos files
+.DS_Store
