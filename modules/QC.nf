@@ -16,6 +16,7 @@ process fastqc {
 
 process multiqc {
     publishDir "${params.output_dir}/reports", mode: "copy"
+    containerOptions "${workflow.containerEngine == "docker" ? '--user $(id -u):$(id -g) --group-add 100' : ''}"
 
     input:
         path logs
