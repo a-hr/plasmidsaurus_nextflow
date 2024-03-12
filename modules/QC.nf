@@ -25,6 +25,6 @@ process multiqc {
         path "multiqc_${params.run_name}.html"
 
     """
-    multiqc . -n multiqc_${params.run_name}
+    multiqc . -n multiqc_${params.run_name}.html
     """
 }
