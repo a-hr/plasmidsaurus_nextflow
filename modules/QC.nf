@@ -5,13 +5,12 @@ process fastqc {
     input:
         path fastq_files
     output:
-        path ouput_dir
+        path "${fastq_files.simpleName}_qc"
     
     script:
-    def output_dir = "${fastq_files.simpleName}_qc"
     """
-    mkdir $ouput_dir
-    fastqc -t 4 -o $ouput_dir ${fastq_files}
+    mkdir "${fastq_files.simpleName}_qc"
+    fastqc -t ${task.cpus} -o "${fastq_files.simpleName}_qc" ${fastq_files}
     """
 }
 
@@ -22,9 +21,9 @@ process multiqc {
         path logs
 
     output:
-        path "multiqc_report.html"
+        path "multiqc_${params.run_name}.html"
 
     """
-    multiqc .
+    multiqc . -n multiqc_${params.run_name}
     """
 }

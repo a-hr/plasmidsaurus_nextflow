@@ -19,8 +19,8 @@ input_fastqs = Channel.fromPath("$params.input_fastq/*.fastq*", checkIfExists: t
 // ---- Run the pipeline ----
 workflow {
     // ---- Quality control ----
-    // fastqc(input_fastqs)
-    // multiqc(fastqc.out.collect())
+    fastqc(input_fastqs)
+    multiqc(fastqc.out.collect())
 
     // ---- Alignment ----
     align(fa, bed, input_fastqs)
