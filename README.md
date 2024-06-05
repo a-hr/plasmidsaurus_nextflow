@@ -33,7 +33,7 @@ In your local machine, there are two ways of running the pipeline:
 If using Nextflow/nf-core, clone the repository and install the basic dependencies (Nextflow). The easiest way to do so is using conda. The pipeline can be run on any system that supports Docker or Singularity. If using Windows, we recommend using the Windows Subsystem for Linux (WSL).
 
 ```bash
-git clone https://github.com/a-hr/ONT-splicing-pipeline.git
+git clone https://github.com/a-hr/plasmidsaurus_nextflow.git
 ```
 
 The internal dependencies of the pipeline are managed by Nextflow, so you don't need to worry about them. If for some reason Nextflow fails to download them when using Singularity (they are provided as Docker containers), you can manually download them with the Makefile:
