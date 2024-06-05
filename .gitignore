@@ -3,7 +3,6 @@
 work/
 .nextflow.log*
 *.out
-*.txt
 
 # pipeline inputs and outputs
 inputs/fastqs*/
