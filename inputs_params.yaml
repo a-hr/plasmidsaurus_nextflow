@@ -1,0 +1,31 @@
+# Use this tamplate to pass your parameters to Nextflow.
+
+# TIP: use $baseDir to refer to the directory where main.nf is located
+# You can also use full paths instead  
+
+# ---- required settings ----
+run_name: 'test-run'
+
+input_fastq: "inputs/fastqs"
+ref_fa: "indexes/GRCh38.primary_assembly.genome.fa"
+ref_bed: "indexes/gencode.v41.primary_assembly.annotation.bed"
+ref_gtf: "indexes/gencode.v41.primary_assembly.annotation.gtf"
+plots_config: "inputs/plots.csv"
+
+output_dir: "output-test-run"
+
+# ---- length filtering ----
+min_len: 200
+max_len: 5000
+
+# ---- optional arguments ----
+get_bams: true
+
+# ---- ggsashimi options ----
+sashimi_min_cov: 5
+sashimi_alpha: 0.6
+sashimi_collapse_groups: false
+sashimi_shrink: false
+sashimi_fix_scale: true
+sashimi_annot_height: 5
+sashimi_width: 15
