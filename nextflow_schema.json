@@ -13,18 +13,23 @@
             "properties": {
                 "run_name": {
                     "type": "string",
-                    "default": "",
+                    "default": "test_run",
                     "description": "name of the experiment (files will be named after it)"
                 },
                 "output_dir": {
                     "type": "string",
-                    "default": "",
-                    "hidden": true
+                    "hidden": true,
+                    "default": "output-test_run"
                 },
                 "get_bams": {
                     "type": "boolean",
                     "default": true,
                     "description": "whether to output the aligned BAMs"
+                },
+                "get_sashimis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "whether to generate sashimi plots"
                 }
             }
         },
@@ -36,37 +41,37 @@
             "properties": {
                 "input_fastq": {
                     "type": "string",
-                    "default": "",
                     "format": "directory-path",
-                    "description": "path to the directory containing the FASTQ files to align"
+                    "description": "path to the directory containing the FASTQ files to align",
+                    "default": "input_fastqs/"
                 },
                 "ref_fa": {
                     "type": "string",
-                    "default": "",
                     "description": "path to the reference FASTA",
-                    "pattern": ".*\\.fa$",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "default": "reference.fa",
+                    "pattern": ".*\\.fa$"
                 },
                 "ref_bed": {
                     "type": "string",
-                    "default": "",
                     "description": "path to the reference BED file to allow splice-aware alignment",
-                    "pattern": ".*\\.bed$",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "default": "reference.bed",
+                    "pattern": ".*\\.bed$"
                 },
                 "ref_gtf": {
                     "type": "string",
-                    "default": "",
                     "description": "path to the reference GTF file to include transcript annotations in sashimis",
-                    "pattern": ".*\\.gtf$",
-                    "format": "file-path"
+                    "format": "file-path",
+                    "default": "reference.gtf",
+                    "pattern": ".*\\.gtf$"
                 },
                 "plots_config": {
                     "type": "string",
-                    "default": "",
                     "description": "path to the CSV file containing plot configuration.",
                     "help_text": "The semicolon (;) separated file should have the following fields:\n- plotID <int>: the ID that groups twogether the BAMs of the plot. Can be repeated as many times as necessary.\n- coords <str>: the coordinates that will be used in the plot. Format: chr:start-end  \n- fastqName: the name, without extension, of the file to include in the plot. Can be used in more than one plot.\n- groupName: the group the file belongs to (e.g WT, KO...). Groups together different files inside a specific plot.",
                     "format": "file-path",
+                    "default": "plots_config.csv",
                     "pattern": ".*\\.csv$"
                 }
             },
@@ -108,7 +113,7 @@
                 },
                 "sashimi_alpha": {
                     "type": "number",
-                    "default": 0.6,
+                    "default": 0.59999999999999997779553950749686919152736663818359375,
                     "description": "alpha to apply on the coverage colour"
                 },
                 "sashimi_collapse_groups": {

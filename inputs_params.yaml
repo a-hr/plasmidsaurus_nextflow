@@ -20,6 +20,7 @@ max_len: 5000
 
 # ---- optional arguments ----
 get_bams: true
+get_sashimis: true
 
 # ---- ggsashimi options ----
 sashimi_min_cov: 5

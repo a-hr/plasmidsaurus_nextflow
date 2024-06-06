@@ -87,6 +87,7 @@ nextflow run main.nf -profile local_singularity -params-file input_params.yaml
 | `run_name` | name of the experiment (files will be named after it) | `string` | plasmidsaurus-mar24 |  |  |
 | `output_dir` |  | `string` | /Users/varo/Desktop/pipe_plasmidsaurus/plasmidsaurus_pipeline/output-plasmidsaurus-mar24 |  | True |
 | `get_bams` | whether to output the aligned BAMs | `boolean` | True |  |  |
+| `get_sashimis` | whether to generate sashimi plots | `boolean` | True |  |  |
 
 ### Input parameters
 

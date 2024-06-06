@@ -6,6 +6,9 @@ process processCSV {
     
     output:
         path "*.tsv", emit: sashimi_inputs
+    
+    when:
+        params.get_sashimis == true
 
     script:
     """
@@ -35,6 +38,9 @@ process sashimi {
     
     output:
         path "*.pdf"
+
+    when:
+        params.get_sashimis == true
     
     script:
     
