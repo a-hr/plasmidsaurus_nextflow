@@ -113,7 +113,7 @@
                 },
                 "sashimi_alpha": {
                     "type": "number",
-                    "default": 0.59999999999999997779553950749686919152736663818359375,
+                    "default": 0.5,
                     "description": "alpha to apply on the coverage colour"
                 },
                 "sashimi_collapse_groups": {
