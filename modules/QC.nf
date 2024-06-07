@@ -1,6 +1,6 @@
 
 process fastqc {
-    tag "${fastq_files}"
+    tag "${fastq_files.simpleName}"
     
     input:
         path fastq_files
@@ -19,7 +19,9 @@ process multiqc {
     containerOptions "${workflow.containerEngine == "docker" ? '--user $(id -u):$(id -g) --group-add 100' : ''}"
 
     input:
-        path logs
+        path fq_pre
+        path fq_post
+        path porechop
 
     output:
         path "multiqc_${params.run_name}.html"
