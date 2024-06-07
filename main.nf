@@ -1,7 +1,8 @@
 #!/usr/bin/env Nextflow
 nextflow.enable.dsl=2
 
-include { fastqc; multiqc } from './modules/QC'
+include { fastqc as fastq_pre; fastqc as fastq_post; multiqc } from './modules/QC'
+include { porechop } from './modules/porechop'
 include { align } from './modules/alignment'
 include { processCSV; sashimi} from './modules/create_plots'
 
@@ -19,11 +20,15 @@ input_fastqs = Channel.fromPath("$params.input_fastq/*.fastq*", checkIfExists: t
 // ---- Run the pipeline ----
 workflow {
     // ---- Quality control ----
-    fastqc(input_fastqs)
-    multiqc(fastqc.out.collect())
+    fastqc_pre(input_fastqs)
+    
+    input_fastqs | flatten \
+    | porechop
+
+    fastqc_post(porechop.out.fastq)
 
     // ---- Alignment ----
-    align(fa, bed, input_fastqs)
+    align(fa, bed, porechop.out.fastq)
 
     // ---- Create plots ----
     align.out | collect \
@@ -33,4 +38,11 @@ workflow {
     | set { bam_tsvs }
 
     sashimi(all_bams, gtf, sashimi_palette, bam_tsvs)
+
+    // ---- Collect reports ----
+    multiqc(
+        fastqc_pre.out.collect(),
+        fastq_post.out.collect(),
+        porechop.out.logs.collect()
+    )
 }
