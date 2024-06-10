@@ -1,7 +1,7 @@
 #!/usr/bin/env Nextflow
 nextflow.enable.dsl=2
 
-include { fastqc as fastq_pre; fastqc as fastq_post; multiqc } from './modules/QC'
+include { fastqc as fastqc_pre; fastqc as fastqc_post; multiqc } from './modules/QC'
 include { porechop } from './modules/porechop'
 include { align } from './modules/alignment'
 include { processCSV; sashimi} from './modules/create_plots'
@@ -42,7 +42,7 @@ workflow {
     // ---- Collect reports ----
     multiqc(
         fastqc_pre.out.collect(),
-        fastq_post.out.collect(),
+        fastqc_post.out.collect(),
         porechop.out.logs.collect()
     )
 }
