@@ -21,14 +21,25 @@ input_fastqs = Channel.fromPath("$params.input_fastq/*.fastq*", checkIfExists: t
 workflow {
     // ---- Quality control ----
     fastqc_pre(input_fastqs)
+    fastq_pre_out = fastqc_pre.out.collect()
     
-    input_fastqs | flatten \
-    | porechop
+    if (params.run_porechop) {
+        input_fastqs | flatten \
+        | porechop
 
-    fastqc_post(porechop.out.fastq)
+        fastqc_post(porechop.out.fastq)
+
+        fastqc_post_out = fastqc_post.out.collect()
+        porechop_logs   = porechop.out.logs.collect()
+        to_align        = porechop.out.fastq
+    } else {
+        fastqc_post_out = channel.empty()
+        porechop_logs   = channel.empty()
+        to_align        = input_fastqs | flatten
+    }
 
     // ---- Alignment ----
-    align(fa, bed, porechop.out.fastq)
+    align(fa, bed, to_align)
 
     // ---- Create plots ----
     align.out | collect \
@@ -41,8 +52,8 @@ workflow {
 
     // ---- Collect reports ----
     multiqc(
-        fastqc_pre.out.collect(),
-        fastqc_post.out.collect(),
-        porechop.out.logs.collect()
+        fastq_pre_out,
+        fastqc_post_out,
+        porechop_logs
     )
 }
