@@ -19,7 +19,12 @@
                 "output_dir": {
                     "type": "string",
                     "hidden": true,
-                    "default": "output-test_run"
+                    "default": "output-pipeline"
+                },
+                "run_porechop": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "whether to run porechop or not (not recommenden to run in local for big FASTQs)"
                 },
                 "get_bams": {
                     "type": "boolean",

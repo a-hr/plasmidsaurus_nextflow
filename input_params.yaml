@@ -4,23 +4,24 @@
 # You can also use full paths instead  
 
 # ---- required settings ----
-run_name: 'test-run'
+run_name: 'maria_iPSCs'
 
 input_fastq: "inputs/fastqs"
-ref_fa: "indexes/GRCh38.primary_assembly.genome.fa"
-ref_bed: "indexes/gencode.v41.primary_assembly.annotation.bed"
-ref_gtf: "indexes/gencode.v41.primary_assembly.annotation.gtf"
+ref_fa: "/scratch/heral/indexes/GRCh38.primary_assembly.genome.fa"
+ref_bed: "/scratch/heral/indexes/gencode.v41.primary_assembly.annotation.bed"
+ref_gtf: "/scratch/heral/indexes/gencode.v41.primary_assembly.annotation.gtf"
 plots_config: "inputs/plots.csv"
 
-output_dir: "output-test-run"
+output_dir: "output-maria_iPSCs"
 
 # ---- length filtering ----
 min_len: 200
 max_len: 5000
 
 # ---- optional arguments ----
+run_porechop: true
 get_bams: true
-get_sashimis: true
+get_sashimis: false
 
 # ---- ggsashimi options ----
 sashimi_min_cov: 5
